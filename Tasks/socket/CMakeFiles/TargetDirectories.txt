@@ -1,0 +1,4 @@
+/home/c/桌面/Github/Tasks/socket/CMakeFiles/rebuild_cache.dir
+/home/c/桌面/Github/Tasks/socket/CMakeFiles/server_01.dir
+/home/c/桌面/Github/Tasks/socket/CMakeFiles/edit_cache.dir
+/home/c/桌面/Github/Tasks/socket/CMakeFiles/client_01.dir
