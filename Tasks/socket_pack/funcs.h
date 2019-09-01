@@ -16,6 +16,7 @@ void daemonize()
     } else if (pid != 0) {
         exit(0);
     }
+    //在新的会话运行子进程（脱离原会话组）
     setsid();
     umask(0077);
     if ((fd = open("/dev/null", O_RDWR)) != -1) {
