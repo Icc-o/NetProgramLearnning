@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/c/桌面/Github/Tasks/3-epoll/socket_base/NetAddress.cpp
+NetAddress.h
+/home/c/桌面/Github/Tasks/3-epoll/socket_base/NetAddress.h
+string.h
+-
+arpa/inet.h
+-
+
+/home/c/桌面/Github/Tasks/3-epoll/socket_base/NetAddress.h
+netinet/in.h
+-
+string
+-
+
+/home/c/桌面/Github/Tasks/3-epoll/socket_base/Scoket.h
+NetAddress.h
+/home/c/桌面/Github/Tasks/3-epoll/socket_base/NetAddress.h
+
+/home/c/桌面/Github/Tasks/3-epoll/socket_base/Socket.cpp
+Scoket.h
+/home/c/桌面/Github/Tasks/3-epoll/socket_base/Scoket.h
+sys/types.h
+-
+sys/socket.h
+-
+netinet/tcp.h
+-
+unistd.h
+-
+string.h
+-
+iostream
+-
+errno.h
+-
+fcntl.h
+-
+
