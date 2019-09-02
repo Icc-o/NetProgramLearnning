@@ -1,1 +1,1 @@
-/usr/bin/c++      CMakeFiles/app1.dir/main.cpp.o CMakeFiles/app1.dir/event.cpp.o  -o app1 socket_base/libsocket.a 
+/usr/bin/c++   -g   CMakeFiles/app1.dir/main.cpp.o CMakeFiles/app1.dir/event.cpp.o  -o app1 socket_base/libsocket.a 

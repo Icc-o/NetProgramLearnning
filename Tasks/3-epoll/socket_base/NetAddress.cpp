@@ -1,6 +1,7 @@
 #include "NetAddress.h"
 #include <string.h>
 #include <arpa/inet.h>
+#include <iostream>
 
 NetAddress::NetAddress(std::string ip, short port)
 {

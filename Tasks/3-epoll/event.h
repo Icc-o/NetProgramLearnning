@@ -26,7 +26,7 @@ public:
     //
     void event_ctrl(uint32_t opt, int fd, epoll_event* ev);
 
-    int get_fd()const{return m_epoll_fd;}
+    int get_fd(){return m_epoll_fd;}
 
 private:
     int m_epoll_fd;

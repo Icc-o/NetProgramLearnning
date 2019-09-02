@@ -13,6 +13,8 @@ event::~event()
 
 void event::event_add(int fd, uint32_t event)
 {
+    if(event == EPOLLIN)
+    std::cout<<"[event] add event EPOLLIN"<<std::endl;
     struct epoll_event ev;
     ev.data.fd = fd;
     ev.events = event;

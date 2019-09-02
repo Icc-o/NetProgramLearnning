@@ -43,6 +43,6 @@ public:
     //设置非阻塞
     void setNonBlocking(bool tag);
 private:
-    const int m_fd;
+     int m_fd;
 
 };

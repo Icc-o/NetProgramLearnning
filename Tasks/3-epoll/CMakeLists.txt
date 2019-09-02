@@ -4,6 +4,8 @@ project(App)
 
 add_definitions(-std=c++11)
 
+SET(CMAKE_BUILD_TYPE DEBUG)
+
 #列出当前文件夹下的所有文件
 aux_source_directory(. DIR_SRCS)
 
