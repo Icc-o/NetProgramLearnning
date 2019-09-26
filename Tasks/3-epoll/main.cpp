@@ -4,7 +4,69 @@
 #include <sys/epoll.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
+#include "thread_pool/thread_pool.h"
+
+#include "http/Ihttp.h"
+
 #define MAX_EVENTS 100
+
+void test_func1()
+{
+
+}
+
+void test_func2(int param)
+{
+    std::cout<<"thread execute test_func2 ing..."<<std::endl;
+    std::cout<<"thread id: "<<std::this_thread::get_id()<<std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(param));
+    std::cout<<"test_func2 execute finished!"<<std::endl;
+}
+
+void thread_pool_test()
+{
+
+}
+
+
+void http_test_func()
+{
+    std::string test_str = "aaa,bbb,ccc,ddd,eee,fff";
+    std::string test_str2 = "aaa1bbb1ccc1ddd1eee";
+    std::vector<std::string> splited_str = split_str(test_str,',');
+    for(auto &s : splited_str)
+        std::cout<<"\t"<<s;
+    std::cout<<std::endl;
+}
+
+
+//读入的时候开启一个线程调这一段
+void read_call_back(Socket s, event &server_event)
+{
+    std::string recv_msg;
+    int ret = s.recv(recv_msg); //recv(triggered_events[i].data.fd,recv_msg, sizeof(recv_msg), 0);
+    if(ret < 0)
+    {
+        std::cerr<<"[recv] return value <0"<<std::endl;
+        exit(1);
+    }
+    else if(ret == 0)
+    {
+        s.shutDown();
+        //在线程池不好把event去掉
+        std::cout<<"thread id: "<<std::this_thread::get_id()<<" solving fd: "<<s.getFd()<<std::endl;
+        server_event.event_remove(s);
+    }
+    else
+    {
+        //从客户端读取数据
+        CHttpRequest req;
+        req.load_content(recv_msg);
+        req.parse_content();
+    }
+
+}
 
 int main(int argc, char **argv)
 {
@@ -14,7 +76,21 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    daemonize();
+
+    //-------------------部分测试功能代码-------------------------------------
+    http_test_func();  //测试分割函数
+
+    //测试线程池
+    ThreadPool executor(5);
+    //std::future<void> f2 = executor.enqueue(test_func2,2);
+    //std::cout<<"thread_pool end"<<std::endl;
+    //std::cout<<"thread pool get ret value f2 "<<f2.get()<<std::endl;
+    //---------------------------------------------------------------------
+
+
+    // daemonize();
+
+    signal(SIGPIPE, SIG_IGN);
 
     std::cout<<"[argv1]"<<argv[1]<<std::endl;
     //初始化服务器套接字
@@ -55,35 +131,26 @@ int main(int argc, char **argv)
                 Socket s = server.accept(&t_add);
                 std::cout<<"get connect fd"<<s.getFd()<<std::endl;
                 s.setNonBlocking(true);
-                server_event.event_add(s.getFd(), EPOLLIN|EPOLLET);
-                s.send("[message] Hello from server");
+                server_event.event_add(s.getFd(), EPOLLIN|EPOLLET|EPOLLOUT);
+                //s.send("[message] Hello from server");
             }
             else
             {
-                Socket s(triggered_events[i].data.fd);
-
-                std::string recv_msg;
-                int ret = s.recv(recv_msg); //recv(triggered_events[i].data.fd,recv_msg, sizeof(recv_msg), 0);
-                if(ret < 0)
+                if(triggered_events[i].events & EPOLLIN)
                 {
-                    std::cerr<<"[recv] return value <0"<<std::endl;
-                    exit(1);
+                    Socket s(triggered_events[i].data.fd);
+                    //放到线程池里面去处理了
+                    executor.enqueue(read_call_back, s, server_event);
                 }
-                else if(ret == 0)
+                else if(triggered_events[i].events & EPOLLOUT)
                 {
-                    std::cout<<"[server] client "<<triggered_events[i].data.fd<<" disconnect from servre"<<std::endl;
-                    close(triggered_events[i].data.fd);
-                    server_event.event_remove(triggered_events[i].data.fd);
+                    // Socket s(triggered_events[i].data.fd);
+                    //s.send("HTTP/1.1 200 OK\nServer: loong\nContent-type: text/html\n<html><div><h1>hello world</h1></div></html\n");
+                    std::string response_str = "HTTP/1.1 200 OK\nServer: loong\nContent-type: text/html\n<html><div><h1>hello world</h1></div></html\n";
+                    // ::send(triggered_events[i].data.fd,response_str.c_str,strlen(response_str.c_str()),0);
                 }
-                else
-                {
-                    //从客户端读取数据
-                    std::cout<<"[recv] msg: "<<recv_msg<<std::endl;
-                    if(recv_msg == "exit")
-                        exit(-1);
-                }
-                
             }
+
             
         }
     }

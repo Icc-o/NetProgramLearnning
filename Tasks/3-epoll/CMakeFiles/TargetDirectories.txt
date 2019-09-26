@@ -4,3 +4,6 @@
 /home/c/桌面/Github/Tasks/3-epoll/socket_base/CMakeFiles/edit_cache.dir
 /home/c/桌面/Github/Tasks/3-epoll/socket_base/CMakeFiles/rebuild_cache.dir
 /home/c/桌面/Github/Tasks/3-epoll/socket_base/CMakeFiles/socket.dir
+/home/c/桌面/Github/Tasks/3-epoll/http/CMakeFiles/edit_cache.dir
+/home/c/桌面/Github/Tasks/3-epoll/http/CMakeFiles/rebuild_cache.dir
+/home/c/桌面/Github/Tasks/3-epoll/http/CMakeFiles/http.dir

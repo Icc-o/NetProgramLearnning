@@ -136,6 +136,19 @@ socket/fast:
 	$(MAKE) -f socket_base/CMakeFiles/socket.dir/build.make socket_base/CMakeFiles/socket.dir/build
 .PHONY : socket/fast
 
+#=============================================================================
+# Target rules for targets named http
+
+# Build rule for target.
+http: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 http
+.PHONY : http
+
+# fast build rule for target.
+http/fast:
+	$(MAKE) -f http/CMakeFiles/http.dir/build.make http/CMakeFiles/http.dir/build
+.PHONY : http/fast
+
 event.o: event.cpp.o
 
 .PHONY : event.o
@@ -200,6 +213,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... app1"
 	@echo "... socket"
+	@echo "... http"
 	@echo "... event.o"
 	@echo "... event.i"
 	@echo "... event.s"

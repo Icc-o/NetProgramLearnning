@@ -117,6 +117,7 @@ app1: CMakeFiles/app1.dir/main.cpp.o
 app1: CMakeFiles/app1.dir/event.cpp.o
 app1: CMakeFiles/app1.dir/build.make
 app1: socket_base/libsocket.a
+app1: http/libhttp.a
 app1: CMakeFiles/app1.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/c/桌面/Github/Tasks/3-epoll/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable app1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/app1.dir/link.txt --verbose=$(VERBOSE)

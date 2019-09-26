@@ -16,6 +16,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/c/桌面/Github/Tasks/3-epoll/socket_base/CMakeFiles/socket.dir/DependInfo.cmake"
+  "/home/c/桌面/Github/Tasks/3-epoll/http/CMakeFiles/http.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -9,6 +9,8 @@ CMakeFiles/app1.dir/event.cpp.o
 CMakeFiles/app1.dir/main.cpp.o
  /home/c/桌面/Github/Tasks/3-epoll/event.h
  /home/c/桌面/Github/Tasks/3-epoll/funcs.h
+ /home/c/桌面/Github/Tasks/3-epoll/http/Ihttp.h
  /home/c/桌面/Github/Tasks/3-epoll/main.cpp
  /home/c/桌面/Github/Tasks/3-epoll/socket_base/NetAddress.h
  /home/c/桌面/Github/Tasks/3-epoll/socket_base/Scoket.h
+ /home/c/桌面/Github/Tasks/3-epoll/thread_pool/thread_pool.h
