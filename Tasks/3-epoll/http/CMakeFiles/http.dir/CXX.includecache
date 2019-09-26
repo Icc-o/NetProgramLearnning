@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/c/桌面/Github/Tasks/3-epoll/http/Ihttp.cpp
+Ihttp.h
+/home/c/桌面/Github/Tasks/3-epoll/http/Ihttp.h
+
+/home/c/桌面/Github/Tasks/3-epoll/http/Ihttp.h
+string
+-
+map
+-
+vector
+-
+iostream
+-
+
